@@ -1,3 +1,4 @@
+import os
 from telegram import Update
 from telegram.ext import Application, MessageHandler, ContextTypes, filters
 from groq import Groq
@@ -34,4 +35,4 @@ app.add_handler(
 )
 
 print("🤖 Groq AI bot ishga tushdi...")
-app.run_polling()
+app.run_polling() 
