@@ -1,4 +1,5 @@
 import os
+import asyncio
 import google.generativeai as genai
 from telegram import Update
 from telegram.ext import Application, MessageHandler, ContextTypes, filters
@@ -21,11 +22,16 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(response.text)
 
 
-app = Application.builder().token(TOKEN).build()
+async def main():
+    app = Application.builder().token(TOKEN).build()
 
-app.add_handler(
-    MessageHandler(filters.TEXT & ~filters.COMMAND, chat)
-)
+    app.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, chat)
+    )
 
-print("🤖 Gemini AI bot ishga tushdi...")
-app.run_polling()
+    print("🤖 Gemini AI bot ishga tushdi...")
+    await app.run_polling()
+
+
+if name == "main":
+    asyncio.run(main())
